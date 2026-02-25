@@ -1,8 +1,14 @@
-import { useMotionValue, motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { type ChangeEvent } from "react";
 
 const MotionValueExample = () => {
   const scale = useMotionValue(1);
+  const scaleSpring = useSpring(scale, {
+    stiffness: 10,
+    damping: 30,
+    mass: 10,
+    velocity: 3,
+  });
 
   const onRangeChange = (e: ChangeEvent<HTMLInputElement>) => {
     scale.set(Number(e.target.value));
@@ -12,7 +18,7 @@ const MotionValueExample = () => {
     <div className="flex items-center justify-center flex-col gap-8 min-h-screen">
       <motion.div
         className="bg-black text-white font-mono px-3 py-2 rounded-md"
-        style={{ scale }}
+        style={{ scale: scaleSpring }}
       >
         Scale me
       </motion.div>
