@@ -1,14 +1,17 @@
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 
 const DraggableBox = () => {
+  const y = useMotionValue(0);
+  const scale = useTransform(y, [-100, 0, 100], [1.6, 1, 1.6]);
+  const borderRadius = useTransform(y, [-100, 0, 100], ["50%", "0%", "50%"]);
+
   return (
     <motion.div
-      className="bg-black text-white font-mono px-3 py-2 rounded-md"
-      drag
-      dragConstraints={{ top: 0, bottom: 100 }}
-    >
-      Draggable Box
-    </motion.div>
+      className="bg-black h-20 w-20 rounded-md"
+      drag="y"
+      dragConstraints={{ top: 0, bottom: 0 }}
+      style={{ y, scale, borderRadius }}
+    />
   );
 };
 
