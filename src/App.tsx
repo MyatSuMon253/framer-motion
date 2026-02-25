@@ -1,9 +1,9 @@
-import MotionValueExample from "./components/motion-value-example";
+import DraggableBox from "./components/draggable-box";
 
 function App() {
   return (
     <main className="h-screen flex items-center justify-center">
-      <MotionValueExample />
+      <DraggableBox />
     </main>
   );
 }
